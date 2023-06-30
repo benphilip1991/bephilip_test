@@ -1,3 +1,4 @@
+import { User, UserPost } from "../../types";
 import apiUtils from "./apiUtils";
 
 class UserApi {
@@ -5,7 +6,7 @@ class UserApi {
     /**
      * Fetch user details from the given user API
      */
-    getAllUserDetails() {
+    getAllUserDetails() : Promise<User[]> {
         return apiUtils.axiosInstance.get(
             process.env?.REACT_APP_USERS_API_PATH || "/users"
         ).then((response) => {
@@ -21,7 +22,7 @@ class UserApi {
      * 
      * @param userId 
      */
-    getUserPosts(userId: number) {
+    getUserPosts(userId: number) : Promise<UserPost[]>{
         return apiUtils.axiosInstance.get(
             (process.env?.REACT_APP_POSTS_API_PATH || "/posts") + "?userId=" + userId
         ).then((response) => {

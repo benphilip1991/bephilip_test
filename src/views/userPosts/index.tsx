@@ -31,7 +31,7 @@ const UserPosts = () => {
 
     // BUG: API called twice
     const getUserPosts = useCallback(async () => {
-        const posts = await userApi.getUserPosts(Number(userId));
+        const posts: UserPost[] = await userApi.getUserPosts(Number(userId));
         setUserPosts(posts)
     }, [userId])
 
